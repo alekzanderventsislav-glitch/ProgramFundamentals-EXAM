@@ -1,0 +1,344 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #12151e;
+    color: #e2e8f0;
+    font-family: 'Inter', sans-serif;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.dashboard {
+    width: 100%;
+    max-width: 1100px;
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    grid-template-rows: auto 1fr;
+    gap: 20px;
+    grid-template-areas:
+        "logo ."
+        "sidebar main";
+}
+
+.logo-header {
+    grid-area: logo;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #cbd5e1;
+}
+
+.logo-icon {
+    width: 24px;
+    height: 24px;
+    color: #94a3b8;
+}
+
+.panel {
+    background-color: #1e2130;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    border: 1px solid #2d3345;
+}
+
+/* Sidebar */
+.sidebar {
+    grid-area: sidebar;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: #94a3b8;
+    margin-bottom: 6px;
+}
+
+.custom-select, .custom-input {
+    width: 100%;
+    background-color: #272c3d;
+    border: 1px solid #374151;
+    color: #e2e8f0;
+    padding: 10px 12px;
+    border-radius: 6px;
+    outline: none;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.custom-select:focus, .custom-input:focus {
+    border-color: #4b5563;
+}
+
+.date-input-wrapper, .money-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.date-input-wrapper .icon-calendar {
+    position: absolute;
+    right: 12px;
+    font-size: 14px;
+    pointer-events: none;
+}
+
+.money-input-wrapper .currency-symbol {
+    position: absolute;
+    left: 12px;
+    color: #64748b;
+    font-size: 14px;
+}
+
+.money-input-wrapper .custom-input {
+    padding-left: 28px;
+}
+
+/* Main Content */
+.main-content {
+    grid-area: main;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.top-row {
+    display: grid;
+    grid-template-columns: 1fr 240px;
+    gap: 20px;
+}
+
+/* Chart Area */
+.chart-panel {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 20px 20px 40px 40px;
+}
+
+.chart-container {
+    flex-grow: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 250px;
+    border-left: 1px solid #333a4f;
+    border-bottom: 1px solid #333a4f;
+}
+
+/* Generating grid lines via background */
+.chart-container::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: 
+        linear-gradient(to right, transparent 99%, #333a4f 100%);
+    background-size: 20% 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.chart-row {
+    position: relative;
+    height: 12%; 
+    display: flex;
+    align-items: center;
+    z-index: 1;
+}
+
+.y-label {
+    position: absolute;
+    left: -30px;
+    font-size: 11px;
+    color: #94a3b8;
+    width: 20px;
+    text-align: right;
+}
+
+.x-labels {
+    position: absolute;
+    bottom: -25px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #94a3b8;
+}
+
+.x-labels span {
+    transform: translateX(-50%);
+}
+
+.bar-wrapper {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background: transparent;
+}
+
+.bar {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 80%;
+    border-radius: 0 4px 4px 0;
+    transition: width 0.3s ease;
+}
+
+.bar-prospects {
+    background-color: #535c75;
+    z-index: 1;
+}
+.bar-leads {
+    background-color: #727e9b;
+    z-index: 2;
+}
+.bar-customers {
+    background-color: #cad1df;
+    z-index: 3;
+}
+
+.tooltip {
+    position: absolute;
+    background: rgba(43, 49, 68, 0.95);
+    border: 1px solid #5b6785;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    pointer-events: none;
+    z-index: 10;
+    transform: translate(-50%, -110%);
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+.chart-row:hover .tooltip {
+    opacity: 1;
+}
+
+
+/* Summary Cards */
+.summary-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 16px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: #94a3b8;
+    margin-bottom: 8px;
+}
+
+.card-header .pct {
+    font-weight: 600;
+    color: #cbd5e1;
+}
+
+.metric {
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 12px;
+}
+
+.progress-track {
+    width: 100%;
+    height: 6px;
+    background-color: #2e3549;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: #cbd5e1;
+    border-radius: 3px;
+    transition: width 0.3s ease;
+}
+.card:nth-child(1) .progress-fill { background-color: #cbd5e1; }
+.card:nth-child(2) .progress-fill { background-color: #a0abc0; }
+.card:nth-child(3) .progress-fill { background-color: #e2e8f0; }
+
+
+/* Sliders */
+.sliders-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 24px;
+}
+
+.slider-group {
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.slider-group label {
+    font-size: 13px;
+    color: #cbd5e1;
+    font-weight: 500;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+.slider-wrapper {
+    position: relative;
+    width: calc(100% - 70px); 
+    display: inline-block;
+}
+
+.custom-slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: #47516d;
+    outline: none;
+}
+
+.custom-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #e2e8f0;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+.slider-value-right {
+    position: absolute;
+    right: 0;
+    bottom: -15px;
+    font-size: 12px;
+    color: #94a3b8;
+}
