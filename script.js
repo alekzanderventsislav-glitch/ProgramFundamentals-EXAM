@@ -35,9 +35,14 @@ function calculateMetrics() {
     els.leadRateDisp.textContent = lRate.toFixed(2) + '%';
     els.prospectRateDisp.textContent = pRate.toFixed(2) + '%';
     
-    const customers = Math.round(rev / aov);
-    const leads = Math.round(customers / (lRate / 100));
-    const prospects = Math.round(leads / (pRate / 100));
+    // Formula 01: Revenue / Avg Order Value
+    const customers = Math.ceil(rev / aov);
+    
+    // Formula 02: Customers * 100 / Lead Response Rate
+    const leads = Math.ceil((customers * 100) / lRate);
+    
+    // Formula 03: Leads * 100 / Prospect Response Rate
+    const prospects = Math.ceil((leads * 100) / pRate);
     
     els.customersVal.textContent = customers;
     els.leadsVal.textContent = leads;
