@@ -10,10 +10,11 @@
     <div class="dashboard">
         <!-- Logo Header -->
         <header class="logo-header">
-            <svg viewBox="0 0 24 24" class="logo-icon" fill="currentColor">
-                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+            <svg viewBox="0 0 24 24" class="logo-icon">
+                <rect width="24" height="24" rx="4" fill="#94a3b8" />
+                <path d="M5.5 6h13l-4.5 6v7l-4 2v-9L5.5 6z" fill="#12151e" />
             </svg>
-            <span class="logo-text">LeadPredictor</span>
+            <span class="logo-text"><span class="brand-lead">Lead</span><span class="brand-predictor">Predictor</span></span>
         </header>
 
         <!-- Sidebar -->
@@ -34,10 +35,15 @@
             </div>
             <div class="input-group">
                 <label>Currency</label>
-                <select class="custom-select" id="currency-select">
-                    <option value="USD">$ US Dollar</option>
-                    <option value="EUR">€ Euro</option>
-                </select>
+                <div class="custom-dropdown" id="curr-dropdown">
+                    <div class="dropdown-selected" id="curr-selected" data-value="USD">
+                        $ US Dollar
+                    </div>
+                    <div class="dropdown-options" id="curr-options">
+                        <div class="dropdown-option curr-option" data-value="USD">$ US Dollar</div>
+                        <div class="dropdown-option curr-option" data-value="EUR">€ Euro</div>
+                    </div>
+                </div>
             </div>
             <div class="input-group">
                 <label>Campaign Start</label>
