@@ -34,15 +34,23 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 22px;
-    font-weight: 600;
+    font-size: 26px;
     color: #cbd5e1;
 }
 
 .logo-icon {
-    width: 24px;
-    height: 24px;
-    color: #94a3b8;
+    width: 28px;
+    height: 28px;
+}
+
+.brand-lead {
+    color: #515d75;
+    font-weight: 700;
+}
+
+.brand-predictor {
+    color: #cbd5e1;
+    font-weight: 500;
 }
 
 .panel {
@@ -83,6 +91,16 @@ body {
 
 .custom-select:focus, .custom-input:focus {
     border-color: #4b5563;
+}
+
+/* Remove side arrows (spinners) from number inputs */
+.custom-input[type="number"]::-webkit-inner-spin-button, 
+.custom-input[type="number"]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+}
+.custom-input[type="number"] {
+    -moz-appearance: textfield;
 }
 
 /* Custom Dropdown for Flags */
