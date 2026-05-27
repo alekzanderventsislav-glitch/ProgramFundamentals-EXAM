@@ -85,6 +85,64 @@ body {
     border-color: #4b5563;
 }
 
+/* Custom Dropdown for Flags */
+.custom-dropdown {
+    position: relative;
+    width: 100%;
+    background-color: #272c3d;
+    border: 1px solid #374151;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #e2e8f0;
+    cursor: pointer;
+    user-select: none;
+    font-family: inherit;
+}
+.custom-dropdown::after {
+    content: '▼';
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%) scaleY(0.6);
+    font-size: 12px;
+    pointer-events: none;
+    color: #94a3b8;
+}
+.dropdown-selected {
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.dropdown-selected img, .dropdown-option img {
+    width: 20px;
+    border-radius: 2px;
+}
+.dropdown-options {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #272c3d;
+    border: 1px solid #374151;
+    border-radius: 6px;
+    margin-top: 4px;
+    z-index: 100;
+}
+.dropdown-options.show {
+    display: block;
+}
+.dropdown-option {
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.dropdown-option:hover {
+    background-color: #374151;
+}
+
 .date-input-wrapper, .money-input-wrapper {
     position: relative;
     display: flex;

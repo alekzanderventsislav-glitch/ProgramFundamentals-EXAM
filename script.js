@@ -4,6 +4,10 @@ const els = {
     leadRate: document.getElementById('lead-rate'),
     prospectRate: document.getElementById('prospect-rate'),
     
+    currencySelect: document.getElementById('currency-select'),
+    revenueCurrency: document.getElementById('revenue-currency'),
+    aovCurrency: document.getElementById('aov-currency'),
+    
     prospectsVal: document.getElementById('prospects-val'),
     leadsVal: document.getElementById('leads-val'),
     customersVal: document.getElementById('customers-val'),
@@ -106,5 +110,46 @@ function renderChart(totalP, totalL, totalC) {
     input.addEventListener('input', calculateMetrics);
 });
 
+// Custom dropdown logic
+const langDropdown = document.getElementById('lang-dropdown');
+const langSelected = document.getElementById('lang-selected');
+const langOptions = document.getElementById('lang-options');
+
+langSelected.addEventListener('click', () => {
+    langOptions.classList.toggle('show');
+});
+
+document.querySelectorAll('.dropdown-option').forEach(option => {
+    option.addEventListener('click', (e) => {
+        const lang = option.getAttribute('data-value');
+        langSelected.innerHTML = option.innerHTML;
+        langOptions.classList.remove('show');
+        
+        if (lang === 'en') {
+            els.currencySelect.value = 'USD';
+        } else {
+            // bg, de, es
+            els.currencySelect.value = 'EUR';
+        }
+        updateCurrencySymbols();
+    });
+});
+
+document.addEventListener('click', (e) => {
+    if (!langDropdown.contains(e.target)) {
+        langOptions.classList.remove('show');
+    }
+});
+
+els.currencySelect.addEventListener('change', updateCurrencySymbols);
+
+function updateCurrencySymbols() {
+    const curr = els.currencySelect.value;
+    const symbol = curr === 'USD' ? '$' : '€';
+    els.revenueCurrency.textContent = symbol;
+    els.aovCurrency.textContent = symbol;
+}
+
 // Initial calculate
+updateCurrencySymbols();
 calculateMetrics();

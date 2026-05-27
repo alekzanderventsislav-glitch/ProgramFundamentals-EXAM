@@ -20,17 +20,23 @@
         <aside class="sidebar panel form-panel">
             <div class="input-group">
                 <label>Language</label>
-                <select class="custom-select">
-                    <option>🇺🇸 English</option>
-                    <option>🇧🇬 Bulgarian</option>
-                    <option>🇩🇪 German</option>
-                    <option>🇪🇸 Spanish</option>
-                </select>
+                <div class="custom-dropdown" id="lang-dropdown">
+                    <div class="dropdown-selected" id="lang-selected">
+                        <img src="https://flagcdn.com/w20/us.png" alt="US"> English
+                    </div>
+                    <div class="dropdown-options" id="lang-options">
+                        <div class="dropdown-option" data-value="en"><img src="https://flagcdn.com/w20/us.png" alt="US"> English</div>
+                        <div class="dropdown-option" data-value="bg"><img src="https://flagcdn.com/w20/bg.png" alt="BG"> Bulgarian</div>
+                        <div class="dropdown-option" data-value="de"><img src="https://flagcdn.com/w20/de.png" alt="DE"> German</div>
+                        <div class="dropdown-option" data-value="es"><img src="https://flagcdn.com/w20/es.png" alt="ES"> Spanish</div>
+                    </div>
+                </div>
             </div>
             <div class="input-group">
                 <label>Currency</label>
-                <select class="custom-select">
-                    <option>$ US Dollar</option>
+                <select class="custom-select" id="currency-select">
+                    <option value="USD">$ US Dollar</option>
+                    <option value="EUR">€ Euro</option>
                 </select>
             </div>
             <div class="input-group">
@@ -51,14 +57,14 @@
             <div class="input-group">
                 <label>Total Revenue</label>
                 <div class="money-input-wrapper">
-                    <span class="currency-symbol">$</span>
+                    <span class="currency-symbol" id="revenue-currency">$</span>
                     <input type="number" id="revenue" value="10000" class="custom-input">
                 </div>
             </div>
             <div class="input-group">
                 <label>Avg. Order Value</label>
                 <div class="money-input-wrapper">
-                    <span class="currency-symbol">$</span>
+                    <span class="currency-symbol" id="aov-currency">$</span>
                     <input type="number" id="aov" value="1000" class="custom-input">
                 </div>
             </div>
