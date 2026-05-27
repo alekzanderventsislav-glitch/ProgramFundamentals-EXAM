@@ -1,6 +1,8 @@
 const els = {
     revenue: document.getElementById('revenue'),
+    revenueSlider: document.getElementById('revenue-slider'),
     aov: document.getElementById('aov'),
+    aovSlider: document.getElementById('aov-slider'),
     leadRate: document.getElementById('lead-rate'),
     prospectRate: document.getElementById('prospect-rate'),
     
@@ -113,6 +115,19 @@ function renderChart(totalP, totalL, totalC) {
 
 [els.revenue, els.aov, els.leadRate, els.prospectRate].forEach(input => {
     input.addEventListener('input', calculateMetrics);
+});
+
+// Sync sliders and number inputs
+els.revenue.addEventListener('input', (e) => els.revenueSlider.value = e.target.value);
+els.revenueSlider.addEventListener('input', (e) => {
+    els.revenue.value = e.target.value;
+    calculateMetrics();
+});
+
+els.aov.addEventListener('input', (e) => els.aovSlider.value = e.target.value);
+els.aovSlider.addEventListener('input', (e) => {
+    els.aov.value = e.target.value;
+    calculateMetrics();
 });
 
 // Custom dropdown logic
